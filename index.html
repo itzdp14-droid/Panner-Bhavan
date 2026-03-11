@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panner Bhavan — Heritage Homestay, Courtallam</title>
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Philosopher:ital,wght@0,400;0,700;1,400&family=Lora:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --forest:      #1e3d2f;
+    --forest-deep: #142a1f;
+    --forest-mid:  #2a5240;
+    --forest-lite: #3a6b53;
+    --leaf:        #4e8c68;
+    --leaf-lite:   #6dab86;
+    --moss:        #7a9e6e;
+    --sage:        #a8bf9a;
+    --mint:        #d4e8d0;
+    --cream:       #f4f0e4;
+    --parch:       #ede4cc;
+    --warm:        #faf6ec;
+    --turmeric:    #d4901a;
+    --turmeric-dk: #a86e0e;
+    --rust:        #9e3d1a;
+    --sandalwood:  #c8a46e;
+    --ink:         #0e1f16;
+    --text:        #1f3a28;
+    --muted:       #4a6855;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--cream); color: var(--text); font-family: 'Lora', serif; font-size: 17px; overflow-x: hidden; }
+
+  .leaf-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='80' height='80' viewBox='0 0 80 80' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M40 10 Q55 25 40 40 Q25 25 40 10Z' fill='%234e8c68' fill-opacity='0.07'/%3E%3Cpath d='M10 40 Q25 55 40 40 Q25 25 10 40Z' fill='%234e8c68' fill-opacity='0.05'/%3E%3Cpath d='M70 40 Q55 55 40 40 Q55 25 70 40Z' fill='%234e8c68' fill-opacity='0.05'/%3E%3C/svg%3E");
+    background-size: 80px;
+  }
+  .kolam-pattern {
+    background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Ccircle cx='30' cy='30' r='4' fill='none' stroke='%23d4901a' stroke-opacity='0.12' stroke-width='1'/%3E%3Ccircle cx='30' cy='30' r='12' fill='none' stroke='%23d4901a' stroke-opacity='0.08' stroke-width='1'/%3E%3Ccircle cx='0' cy='0' r='4' fill='none' stroke='%23d4901a' stroke-opacity='0.1' stroke-width='1'/%3E%3Ccircle cx='60' cy='0' r='4' fill='none' stroke='%23d4901a' stroke-opacity='0.1' stroke-width='1'/%3E%3Ccircle cx='0' cy='60' r='4' fill='none' stroke='%23d4901a' stroke-opacity='0.1' stroke-width='1'/%3E%3Ccircle cx='60' cy='60' r='4' fill='none' stroke='%23d4901a' stroke-opacity='0.1' stroke-width='1'/%3E%3C/svg%3E");
+    background-size: 60px;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 0 60px; height: 68px;
+    background: var(--forest-deep);
+    border-bottom: 3px solid var(--turmeric);
+  }
+  .nav-stripe {
+    position: absolute; top: 0; left: 0; right: 0; height: 3px;
+    background: repeating-linear-gradient(90deg, var(--turmeric) 0px, var(--turmeric) 16px, var(--rust) 16px, var(--rust) 32px, var(--leaf) 32px, var(--leaf) 48px);
+  }
+  .nav-logo { font-family: 'Yatra One', cursive; color: var(--sandalwood); font-size: 1.3rem; text-decoration: none; }
+  .nav-logo span { color: var(--turmeric); }
+  .nav-links { display: flex; gap: 32px; list-style: none; }
+  .nav-links a { color: var(--mint); text-decoration: none; font-size: 0.88rem; transition: color 0.3s; padding-bottom: 4px; border-bottom: 1px solid transparent; }
+  .nav-links a:hover { color: var(--turmeric); border-bottom-color: var(--turmeric); }
+
+  /* HERO */
+  .hero { height: 100vh; position: relative; display: flex; align-items: center; justify-content: center; overflow: hidden; background: var(--forest-deep); }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 15% 60%, rgba(78,140,104,0.25) 0%, transparent 55%),
+      radial-gradient(ellipse at 85% 20%, rgba(212,144,26,0.12) 0%, transparent 45%),
+      linear-gradient(170deg, #0c1c13 0%, #142a1f 35%, #1e3d2f 65%, #0e2218 100%);
+  }
+  .hero-leaves { position: absolute; inset: 0; opacity: 0.12; background-image: url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M60 10 Q85 35 60 60 Q35 35 60 10Z' fill='%234e8c68'/%3E%3Cpath d='M10 60 Q35 85 60 60 Q35 35 10 60Z' fill='%236dab86' opacity='0.6'/%3E%3Cpath d='M110 60 Q85 85 60 60 Q85 35 110 60Z' fill='%236dab86' opacity='0.6'/%3E%3C/svg%3E"); background-size: 120px; }
+  .hero-frame { position: absolute; inset: 20px; border: 1px solid rgba(212,144,26,0.3); pointer-events: none; }
+  .hero-frame::before { content: ''; position: absolute; inset: 6px; border: 1px solid rgba(78,140,104,0.2); }
+  .hero-content { position: relative; z-index: 2; text-align: center; padding: 40px; animation: fadeUp 1.3s ease both; }
+  .hero-badge { display: inline-block; background: rgba(212,144,26,0.15); border: 1px solid rgba(212,144,26,0.4); color: var(--sandalwood); font-family: 'Philosopher', serif; font-style: italic; font-size: 0.85rem; letter-spacing: 0.12em; padding: 6px 24px; margin-bottom: 28px; }
+  .hero-title { font-family: 'Yatra One', cursive; font-size: clamp(3.8rem, 9vw, 7.5rem); color: var(--cream); line-height: 1.0; margin-bottom: 4px; text-shadow: 0 4px 30px rgba(0,0,0,0.5); }
+  .hero-title .accent { color: var(--turmeric); }
+  .hero-subtitle { font-family: 'Lora', serif; font-style: italic; color: rgba(212,232,208,0.7); font-size: 1.15rem; margin: 16px 0 44px; }
+  .hero-divider { display: flex; align-items: center; justify-content: center; gap: 14px; margin-bottom: 44px; }
+  .hero-dline { width: 70px; height: 1px; background: rgba(212,144,26,0.45); }
+  .btn-hero { display: inline-block; padding: 15px 46px; background: var(--turmeric); color: var(--forest-deep); font-family: 'Philosopher', serif; font-weight: 700; font-size: 0.9rem; letter-spacing: 0.18em; text-decoration: none; text-transform: uppercase; transition: all 0.3s; border: 2px solid var(--turmeric); }
+  .btn-hero:hover { background: transparent; color: var(--turmeric); }
+
+  /* SECTIONS */
+  section { padding: 96px 64px; }
+  .sec-eye { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+  .eye-line { width: 32px; height: 2px; background: var(--turmeric); }
+  .eye-text { font-family: 'Philosopher', serif; font-size: 0.75rem; letter-spacing: 0.35em; color: var(--turmeric); text-transform: uppercase; }
+  .sec-title { font-family: 'Yatra One', cursive; font-size: clamp(2rem, 3.5vw, 3.2rem); color: var(--forest-deep); line-height: 1.2; margin-bottom: 20px; }
+  .sec-title .g { color: var(--leaf); }
+  .kdiv { display: flex; align-items: center; gap: 10px; margin-bottom: 36px; }
+  .kline { flex: 0 0 40px; height: 1px; background: var(--leaf); opacity: 0.5; }
+  .kdot { width: 8px; height: 8px; border-radius: 50%; background: var(--leaf); opacity: 0.6; }
+  .kdiam { width: 8px; height: 8px; background: var(--turmeric); transform: rotate(45deg); opacity: 0.7; }
+
+  /* ABOUT */
+  .about { background: var(--warm); display: grid; grid-template-columns: 1fr 1fr; gap: 72px; align-items: center; }
+  .about-text p { color: var(--muted); line-height: 1.9; margin-bottom: 18px; font-size: 1rem; }
+  .about-img-wrap { position: relative; }
+  .about-img { width: 100%; aspect-ratio: 4/5; background: linear-gradient(155deg, var(--forest-mid) 0%, var(--forest) 50%, var(--forest-deep) 100%); position: relative; overflow: hidden; border: 3px solid var(--forest-mid); }
+  .img-ph { position: absolute; inset: 0; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 12px; color: rgba(168,191,154,0.5); font-style: italic; font-size: 0.9rem; }
+  .about-badge { position: absolute; bottom: -18px; right: -18px; background: var(--turmeric); color: var(--forest-deep); padding: 16px 22px; font-family: 'Philosopher', serif; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase; box-shadow: 4px 4px 0 var(--forest-deep); }
+  .stats-row { display: flex; margin-top: 40px; padding-top: 40px; border-top: 2px solid rgba(78,140,104,0.2); }
+  .stat { flex: 1; text-align: center; padding: 0 20px; border-right: 1px solid rgba(78,140,104,0.2); }
+  .stat:last-child { border-right: none; }
+  .stat-n { display: block; font-family: 'Yatra One', cursive; font-size: 2.6rem; color: var(--forest); line-height: 1; }
+  .stat-l { font-size: 0.75rem; letter-spacing: 0.08em; color: var(--muted); margin-top: 4px; }
+
+  /* ROOMS */
+  .rooms { background: var(--forest-deep); }
+  .rooms .sec-title { color: var(--mint); }
+  .rooms .sec-title .g { color: var(--leaf-lite); }
+  .rooms .eye-text { color: var(--sandalwood); }
+  .rooms .eye-line { background: var(--sandalwood); }
+  .rooms-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 28px; margin-top: 52px; }
+  .rcard { background: var(--forest-mid); border: 1px solid rgba(109,171,134,0.25); border-top: 3px solid var(--turmeric); transition: transform 0.3s, box-shadow 0.3s; cursor: pointer; overflow: hidden; }
+  .rcard:hover { transform: translateY(-7px); box-shadow: 0 20px 50px rgba(0,0,0,0.4); }
+  .rimg { width: 100%; aspect-ratio: 4/3; position: relative; overflow: hidden; }
+  .rimg-bg { width: 100%; height: 100%; display: flex; align-items: center; justify-content: center; font-style: italic; font-size: 0.85rem; color: rgba(168,191,154,0.4); }
+  .rimg-bg.r1 { background: linear-gradient(135deg, #1a3a28, #2a5a40); }
+  .rimg-bg.r2 { background: linear-gradient(135deg, #162e24, #23493a); }
+  .rimg-bg.r3 { background: linear-gradient(135deg, #122218, #1e3828); }
+  .rtag { position: absolute; top: 14px; left: 0; background: var(--turmeric); color: var(--forest-deep); font-family: 'Philosopher', serif; font-weight: 700; font-size: 0.62rem; letter-spacing: 0.18em; padding: 5px 14px 5px 10px; clip-path: polygon(0 0, 100% 0, 90% 100%, 0 100%); }
+  .rinfo { padding: 26px; }
+  .rname { font-family: 'Yatra One', cursive; font-size: 1.55rem; color: var(--mint); margin-bottom: 8px; }
+  .rdesc { font-size: 0.85rem; color: rgba(212,232,208,0.65); line-height: 1.75; margin-bottom: 18px; }
+  .rpills { display: flex; flex-wrap: wrap; gap: 7px; margin-bottom: 22px; }
+  .pill { font-size: 0.7rem; color: var(--sage); background: rgba(78,140,104,0.18); border: 1px solid rgba(78,140,104,0.35); padding: 4px 10px; border-radius: 2px; }
+  .rprice-row { display: flex; justify-content: space-between; align-items: center; padding-top: 18px; border-top: 1px solid rgba(109,171,134,0.2); }
+  .rprice { font-family: 'Yatra One', cursive; font-size: 1.65rem; color: var(--turmeric); }
+  .rprice span { font-family: 'Lora', serif; font-size: 0.8rem; color: var(--sage); }
+  .btn-bk { padding: 10px 22px; background: var(--turmeric); color: var(--forest-deep); font-family: 'Philosopher', serif; font-weight: 700; font-size: 0.72rem; letter-spacing: 0.15em; border: none; cursor: pointer; transition: all 0.3s; text-decoration: none; display: inline-block; text-transform: uppercase; }
+  .btn-bk:hover { background: var(--sandalwood); }
+
+  /* GALLERY */
+  .gallery { background: var(--parch); }
+  .gal-grid { display: grid; grid-template-columns: repeat(4,1fr); grid-template-rows: 230px 230px; gap: 10px; margin-top: 52px; }
+  .gi { overflow: hidden; position: relative; cursor: pointer; }
+  .gi:nth-child(1) { grid-column: span 2; grid-row: span 2; }
+  .gi:nth-child(4) { grid-column: span 2; }
+  .gbg { width: 100%; height: 100%; transition: transform 0.5s; display: flex; align-items: center; justify-content: center; }
+  .gi:hover .gbg { transform: scale(1.07); }
+  .gbg.g1 { background: linear-gradient(135deg,#1e3d2f,#3a6b53); }
+  .gbg.g2 { background: linear-gradient(135deg,#142a1f,#2a5240); }
+  .gbg.g3 { background: linear-gradient(135deg,#1a3010,#2e5020); }
+  .gbg.g4 { background: linear-gradient(135deg,#2a3a10,#4a5e28); }
+  .gbg.g5 { background: linear-gradient(135deg,#1a2e10,#304820); }
+  .gph { color: rgba(168,191,154,0.35); font-style: italic; font-size: 0.85rem; }
+  .govl { position: absolute; inset: 0; background: rgba(14,31,22,0); transition: background 0.3s; display: flex; align-items: flex-end; }
+  .gi:hover .govl { background: rgba(14,31,22,0.45); }
+  .gcap { padding: 18px; color: var(--sandalwood); font-family: 'Philosopher', serif; font-style: italic; opacity: 0; transition: opacity 0.3s; }
+  .gi:hover .gcap { opacity: 1; }
+
+  /* ATTRACTIONS */
+  .attractions { background: var(--forest); }
+  .attractions .sec-title { color: var(--cream); }
+  .attractions .sec-title .g { color: var(--leaf-lite); }
+  .attractions .eye-text { color: var(--sandalwood); }
+  .attractions .eye-line { background: var(--sandalwood); }
+  .attr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-top: 52px; }
+  .acard { display: flex; gap: 20px; align-items: flex-start; padding: 28px; background: rgba(255,255,255,0.05); border: 1px solid rgba(109,171,134,0.2); border-left: 4px solid var(--turmeric); transition: background 0.3s; }
+  .acard:hover { background: rgba(255,255,255,0.09); }
+  .aicon { width: 48px; height: 48px; flex-shrink: 0; background: var(--turmeric); display: flex; align-items: center; justify-content: center; color: var(--forest-deep); }
+  .aname { font-family: 'Yatra One', cursive; font-size: 1.2rem; color: var(--cream); margin-bottom: 4px; }
+  .adist { font-family: 'Philosopher', serif; font-size: 0.72rem; letter-spacing: 0.1em; color: var(--turmeric); margin-bottom: 8px; text-transform: uppercase; }
+  .adesc { font-size: 0.86rem; color: rgba(212,232,208,0.65); line-height: 1.7; }
+
+  /* BOOKING */
+  .booking { background: var(--warm); }
+  .bk-inner { max-width: 680px; margin: 0 auto; text-align: center; }
+  .bk-inner .sec-title { text-align: center; }
+  .bk-inner .sec-eye { justify-content: center; }
+  .bk-inner .kdiv { justify-content: center; }
+  .bk-inner > p { color: var(--muted); line-height: 1.8; margin-bottom: 44px; }
+  .fgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; text-align: left; margin-bottom: 18px; }
+  .fg { display: flex; flex-direction: column; gap: 6px; }
+  .fg.full { grid-column: span 2; }
+  .fg label { font-family: 'Philosopher', serif; font-size: 0.68rem; letter-spacing: 0.22em; color: var(--forest); text-transform: uppercase; font-weight: 700; }
+  .fg input, .fg select, .fg textarea { background: var(--cream); border: 1.5px solid rgba(78,140,104,0.3); border-bottom: 2px solid var(--leaf); padding: 13px 14px; font-family: 'Lora', serif; font-size: 0.95rem; color: var(--text); outline: none; transition: border-color 0.3s; width: 100%; }
+  .fg input:focus, .fg select:focus, .fg textarea:focus { border-color: var(--turmeric); border-bottom-color: var(--turmeric); }
+  .fg textarea { resize: vertical; min-height: 110px; }
+  .fg select { appearance: none; cursor: pointer; }
+  .btn-sub { width: 100%; padding: 17px; background: var(--forest); color: var(--sandalwood); border: none; font-family: 'Philosopher', serif; font-weight: 700; font-size: 0.85rem; letter-spacing: 0.28em; text-transform: uppercase; cursor: pointer; transition: background 0.3s; margin-top: 6px; border-top: 3px solid var(--turmeric); }
+  .btn-sub:hover { background: var(--turmeric-dk); }
+
+  /* FOOTER */
+  .fstripe { height: 4px; background: repeating-linear-gradient(90deg, var(--turmeric) 0px, var(--turmeric) 16px, var(--rust) 16px, var(--rust) 32px, var(--leaf) 32px, var(--leaf) 48px); }
+  footer { background: var(--forest-deep); color: rgba(212,232,208,0.6); padding: 60px 64px; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 56px; }
+  .flogo { font-family: 'Yatra One', cursive; color: var(--sandalwood); font-size: 1.4rem; margin-bottom: 12px; }
+  .flogo span { color: var(--turmeric); }
+  .ftag { font-style: italic; font-size: 0.92rem; line-height: 1.7; margin-bottom: 22px; color: rgba(212,232,208,0.55); }
+  .fcontact { font-size: 0.88rem; line-height: 2.1; }
+  .fcol h4 { font-family: 'Philosopher', serif; font-weight: 700; color: var(--sandalwood); font-size: 0.7rem; letter-spacing: 0.28em; text-transform: uppercase; margin-bottom: 18px; padding-bottom: 10px; border-bottom: 1px solid rgba(212,144,26,0.3); }
+  .fcol ul { list-style: none; }
+  .fcol li { margin-bottom: 10px; }
+  .fcol a { color: rgba(212,232,208,0.55); text-decoration: none; font-size: 0.88rem; transition: color 0.3s; }
+  .fcol a:hover { color: var(--turmeric); }
+  .fbot { background: var(--ink); text-align: center; padding: 18px 64px; font-size: 0.75rem; color: rgba(212,232,208,0.3); letter-spacing: 0.06em; }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: translateY(0); } }
+  .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+  .d1 { transition-delay: 0.1s; } .d2 { transition-delay: 0.2s; } .d3 { transition-delay: 0.3s; }
+
+  @media (max-width: 900px) {
+    nav { padding: 0 20px; } .nav-links { display: none; }
+    section { padding: 64px 24px; }
+    .about { grid-template-columns: 1fr; gap: 36px; }
+    .rooms-grid { grid-template-columns: 1fr; }
+    .gal-grid { grid-template-columns: 1fr 1fr; grid-template-rows: auto; }
+    .gi:nth-child(1) { grid-column: span 2; grid-row: 1; }
+    .gi:nth-child(4) { grid-column: span 1; }
+    .attr-grid { grid-template-columns: 1fr; }
+    .fgrid { grid-template-columns: 1fr; } .fg.full { grid-column: span 1; }
+    footer { grid-template-columns: 1fr; gap: 36px; padding: 40px 24px; }
+    .fbot { padding: 18px 24px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-stripe"></div>
+  <a href="#" class="nav-logo">Panner <span>Bhavan</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#rooms">Houses</a></li>
+    <li><a href="#gallery">Gallery</a></li>
+    <li><a href="#attractions">Explore</a></li>
+    <li><a href="#booking">Book Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-bg"></div>
+  <div class="hero-leaves leaf-pattern"></div>
+  <div class="hero-frame"></div>
+  <div class="hero-content">
+    <div class="hero-badge">🌿 Heritage Homestay · Courtallam, Tamil Nadu</div>
+    <h1 class="hero-title">Panner<br><span class="accent">Bhavan</span></h1>
+    <p class="hero-subtitle">Steps from the Falls · Surrounded by Nature · Feel at Home</p>
+    <div class="hero-divider">
+      <div class="hero-dline"></div>
+      <span style="color:var(--turmeric);font-size:1.1rem">❀</span>
+      <div class="hero-dline"></div>
+    </div>
+    <a href="#booking" class="btn-hero">Reserve Your Stay</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about leaf-pattern" id="about">
+  <div class="about-text reveal">
+    <div class="sec-eye"><div class="eye-line"></div><span class="eye-text">Our Story</span></div>
+    <h2 class="sec-title">Your Home by the <span class="g">Falls</span></h2>
+    <div class="kdiv"><div class="kline"></div><div class="kdiam"></div><div class="kdot"></div><div class="kdiam"></div><div class="kline"></div></div>
+    <p>Welcome to Panner Bhavan — a warm, spacious family homestay nestled in the heart of Courtallam, just a short stroll from the famous Main Falls. We offer fully furnished independent BHK houses that give you all the comfort and privacy of home.</p>
+    <p>Whether you are here for the healing herb-rich waters, the lush Western Ghats, or simply to unwind with family, Panner Bhavan gives you the space to do it your way — with clean rooms, reliable WiFi, a geyser, and a water purifier.</p>
+    <div class="stats-row">
+      <div class="stat"><span class="stat-n">3</span><div class="stat-l">House Options</div></div>
+      <div class="stat"><span class="stat-n">50m</span><div class="stat-l">From Main Falls</div></div>
+      <div class="stat"><span class="stat-n">4.9★</span><div class="stat-l">Guest Rating</div></div>
+    </div>
+  </div>
+  <div class="about-img-wrap reveal">
+    <div class="about-img">
+      <div class="img-ph">
+        <svg width="44" height="44" viewBox="0 0 44 44" fill="none"><rect x="3" y="9" width="38" height="28" rx="2" stroke="#4e8c68" stroke-width="1.5"/><circle cx="15" cy="20" r="5" stroke="#4e8c68" stroke-width="1.5"/><path d="M3 32 L13 22 L20 29 L28 20 L41 32" stroke="#4e8c68" stroke-width="1.5"/></svg>
+        Add your property photo here
+      </div>
+    </div>
+    <div class="about-badge">Courtallam · Spa of South India</div>
+  </div>
+</section>
+
+<!-- ROOMS -->
+<section class="rooms kolam-pattern" id="rooms">
+  <div class="reveal">
+    <div class="sec-eye"><div class="eye-line" style="background:var(--sandalwood)"></div><span class="eye-text" style="color:var(--sandalwood)">Accommodation</span></div>
+    <h2 class="sec-title" style="color:var(--mint)">Our <span class="g">Houses</span></h2>
+    <div class="kdiv"><div class="kline" style="background:var(--leaf-lite)"></div><div class="kdiam"></div><div class="kdot" style="background:var(--leaf-lite)"></div><div class="kdiam"></div><div class="kline" style="background:var(--leaf-lite)"></div></div>
+  </div>
+  <div class="rooms-grid">
+    <div class="rcard reveal d1">
+      <div class="rimg"><div class="rimg-bg r1">Add house photo</div><span class="rtag">BEST VALUE</span></div>
+      <div class="rinfo">
+        <h3 class="rname">4 BHK House</h3>
+        <p class="rdesc">Our largest option — ideal for big families or groups. Spacious living area, full kitchen, 4 private bedrooms, all modern comforts just steps from the Main Falls.</p>
+        <div class="rpills"><span class="pill">4 Bedrooms</span><span class="pill">WiFi</span><span class="pill">Geyser</span><span class="pill">Water Purifier</span><span class="pill">Kitchen</span></div>
+        <div class="rprice-row"><div class="rprice">&#8377;4,000 <span>/ night</span></div><a href="#booking" class="btn-bk">Book</a></div>
+      </div>
+    </div>
+    <div class="rcard reveal d2">
+      <div class="rimg"><div class="rimg-bg r2">Add house photo</div><span class="rtag">POPULAR</span></div>
+      <div class="rinfo">
+        <h3 class="rname">3 BHK House</h3>
+        <p class="rdesc">A comfortable 3-bedroom house ideal for families. Cosy living room, full kitchen access, and a peaceful atmosphere within walking distance of the healing falls.</p>
+        <div class="rpills"><span class="pill">3 Bedrooms</span><span class="pill">WiFi</span><span class="pill">Geyser</span><span class="pill">Water Purifier</span><span class="pill">Kitchen</span></div>
+        <div class="rprice-row"><div class="rprice">&#8377;3,000 <span>/ night</span></div><a href="#booking" class="btn-bk">Book</a></div>
+      </div>
+    </div>
+    <div class="rcard reveal d3">
+      <div class="rimg"><div class="rimg-bg r3">Add house photo</div><span class="rtag">COSY STAY</span></div>
+      <div class="rinfo">
+        <h3 class="rname">2 BHK House</h3>
+        <p class="rdesc">Perfect for couples or small families — a snug 2-bedroom house with everything needed for a relaxing Courtallam getaway, steps from the Main Falls.</p>
+        <div class="rpills"><span class="pill">2 Bedrooms</span><span class="pill">WiFi</span><span class="pill">Geyser</span><span class="pill">Water Purifier</span><span class="pill">Kitchen</span></div>
+        <div class="rprice-row"><div class="rprice">&#8377;2,500 <span>/ night</span></div><a href="#booking" class="btn-bk">Book</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="reveal">
+    <div class="sec-eye"><div class="eye-line"></div><span class="eye-text">Photo Gallery</span></div>
+    <h2 class="sec-title">A Glimpse of <span class="g">Panner Bhavan</span></h2>
+    <div class="kdiv"><div class="kline"></div><div class="kdiam"></div><div class="kdot"></div><div class="kdiam"></div><div class="kline"></div></div>
+  </div>
+  <div class="gal-grid reveal">
+    <div class="gi"><div class="gbg g1"><span class="gph">House Exterior</span></div><div class="govl"><div class="gcap">House Exterior</div></div></div>
+    <div class="gi"><div class="gbg g2"><span class="gph">Living Area</span></div><div class="govl"><div class="gcap">Living Area</div></div></div>
+    <div class="gi"><div class="gbg g3"><span class="gph">Bedrooms</span></div><div class="govl"><div class="gcap">Bedrooms</div></div></div>
+    <div class="gi"><div class="gbg g4"><span class="gph">4 BHK House</span></div><div class="govl"><div class="gcap">4 BHK House</div></div></div>
+    <div class="gi"><div class="gbg g5"><span class="gph">Near Main Falls</span></div><div class="govl"><div class="gcap">Near Main Falls</div></div></div>
+  </div>
+</section>
+
+<!-- ATTRACTIONS -->
+<section class="attractions" id="attractions">
+  <div class="reveal">
+    <div class="sec-eye"><div class="eye-line" style="background:var(--sandalwood)"></div><span class="eye-text" style="color:var(--sandalwood)">Explore Nearby</span></div>
+    <h2 class="sec-title">Things to <span class="g">Discover</span></h2>
+    <div class="kdiv"><div class="kline" style="background:var(--leaf-lite)"></div><div class="kdiam"></div><div class="kdot" style="background:var(--leaf-lite)"></div><div class="kdiam"></div><div class="kline" style="background:var(--leaf-lite)"></div></div>
+  </div>
+  <div class="attr-grid">
+    <div class="acard reveal"><div class="aicon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2C8 2 4 8 4 13c0 3 2 6 4 8h8c2-2 4-5 4-8 0-5-4-11-8-11z"/><path d="M12 6v8M8 10h8"/></svg></div><div><h3 class="aname">Main Falls (Peraruvi)</h3><p class="adist">0.5 km · 5 min walk</p><p class="adesc">The crown jewel of Courtallam — a majestic 60-metre waterfall whose herb-rich waters are said to have powerful healing and medicinal properties. Open 24 hours in peak season.</p></div></div>
+    <div class="acard reveal"><div class="aicon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 20c0-4 2-7 7-7s7 3 7 7"/><path d="M5 8c0-2 3-4 7-4s7 2 7 4"/><path d="M8 8c0 3 1 7 4 12M16 8c0 3-1 7-4 12"/></svg></div><div><h3 class="aname">Five Falls (Aintharuvi)</h3><p class="adist">4 km · 10 min drive</p><p class="adesc">Water dramatically splits into five distinct streams before cascading down. Surrounded by lush forest with fruit stalls selling mangosteen, lychee, and jackfruit.</p></div></div>
+    <div class="acard reveal"><div class="aicon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V7a1 1 0 011-1h14a1 1 0 011 1v12"/><path d="M4 19h16M8 6V4a1 1 0 011-1h6a1 1 0 011 1v2"/><rect x="9" y="10" width="2" height="3"/><rect x="13" y="10" width="2" height="3"/></svg></div><div><h3 class="aname">Thirukuttralanathar Temple</h3><p class="adist">0.3 km · 3 min walk</p><p class="adesc">One of the oldest Shiva temples in South India, dating to the Pandya and Chola kingdoms. Ancient inscriptions on its walls tell a thousand years of devotion.</p></div></div>
+    <div class="acard reveal"><div class="aicon"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 17l3-6 4 4 4-8 3 5 4-3"/><path d="M3 21h18"/></svg></div><div><h3 class="aname">Old Courtallam Falls</h3><p class="adist">8 km · 15 min drive</p><p class="adesc">A hidden gem — a 200-ft waterfall en route to Tenkasi, framed by lush rice fields, coconut groves, and mango trees. Far less crowded and truly serene.</p></div></div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking kolam-pattern" id="booking">
+  <div class="bk-inner reveal">
+    <div class="sec-eye" style="justify-content:center"><div class="eye-line"></div><span class="eye-text">Reservations</span><div class="eye-line"></div></div>
+    <h2 class="sec-title">Book Your <span class="g">Stay</span></h2>
+    <div class="kdiv" style="justify-content:center"><div class="kline"></div><div class="kdiam"></div><div class="kdot"></div><div class="kdiam"></div><div class="kline"></div></div>
+    <p>We would love to host you at Panner Bhavan. Fill in your details and we will confirm your reservation within 24 hours.</p>
+    <div class="fgrid">
+      <div class="fg"><label>Your Name</label><input type="text" placeholder="Full name"></div>
+      <div class="fg"><label>Phone / Email</label><input type="text" placeholder="+91 or email"></div>
+      <div class="fg"><label>Check-in Date</label><input type="date"></div>
+      <div class="fg"><label>Check-out Date</label><input type="date"></div>
+      <div class="fg"><label>Number of Guests</label><select><option>1-2 Guests</option><option>3-4 Guests</option><option>5-6 Guests</option><option>7+ Guests</option></select></div>
+      <div class="fg"><label>House Preference</label><select><option>4 BHK House (&#8377;4,000/night)</option><option>3 BHK House (&#8377;3,000/night)</option><option>2 BHK House (&#8377;2,500/night)</option><option>No Preference</option></select></div>
+      <div class="fg full"><label>Special Requests</label><textarea placeholder="Any special needs, arrival time, occasion..."></textarea></div>
+    </div>
+    <button class="btn-sub" onclick="alert('Vanakkam! Thank you for choosing Panner Bhavan. We will confirm your reservation within 24 hours.')">Send Booking Request 🌿</button>
+  </div>
+</section>
+
+<div class="fstripe"></div>
+<footer>
+  <div>
+    <div class="flogo">Panner <span>Bhavan</span></div>
+    <p class="ftag">"Your home by the healing waters —<br>clean, spacious and close to everything."</p>
+    <div class="fcontact">
+      <div>📍 Near Main Falls, Courtallam, Tamil Nadu</div>
+      <div>📞 +91 98765 43210</div>
+      <div>✉ pannerbhavan@gmail.com</div>
+    </div>
+  </div>
+  <div class="fcol"><h4>Navigate</h4><ul><li><a href="#about">About Us</a></li><li><a href="#rooms">Houses &amp; Pricing</a></li><li><a href="#gallery">Gallery</a></li><li><a href="#attractions">Nearby Attractions</a></li><li><a href="#booking">Book Now</a></li></ul></div>
+  <div class="fcol"><h4>Policies</h4><ul><li><a href="#">Cancellation Policy</a></li><li><a href="#">Check-in / Check-out</a></li><li><a href="#">House Rules</a></li><li><a href="#">Privacy Policy</a></li></ul></div>
+</footer>
+<div class="fbot">© 2025 Panner Bhavan, Courtallam · Made with 🌿 for families who love nature</div>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  reveals.forEach(el => io.observe(el));
+</script>
+</body>
+</html>
